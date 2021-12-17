@@ -36,6 +36,7 @@ class Sqliteodbc < Formula
     lib.mkdir
     args = ["--with-odbc=#{Formula["unixodbc"].opt_prefix}",
             "--with-sqlite3=#{Formula["sqlite"].opt_prefix}"]
+    args << "-build=arm-apple-darwin" if OS.mac? && Hardware::CPU.arm?
     args << "--with-libxml2=#{Formula["libxml2"].opt_prefix}" if OS.linux?
 
     system "./configure", "--prefix=#{prefix}", *args
